@@ -1,0 +1,40 @@
+# Load completion functions
+autoload -Uz +X compinit && compinit
+autoload -Uz +X bashcompinit && bashcompinit
+source ~/.bash_aliases
+
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+echo "Hey $USERNAME, your zshrc is loading!"
+
+# Strt python 3.6 workaround
+# Source: https://stackoverflow.com/questions/71862398/install-python-3-6-on-mac-m1
+# End python 3.6 workarounds
+
+source ~/repos/zsh/fzf-tab.plugin.zsh 
+if [ "$SSH_AUTH_SOCK" = "" -a -x /usr/bin/ssh-agent ]; then
+                eval `/usr/bin/ssh-agent`
+fi
+
+if [ "$SSH_AGENT_PID" != "" -a -x /usr/bin/ssh-agent ]; then
+                /usr/bin/ssh-agent -k
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Created by `pipx` on 2022-07-25 23:49:26
+export PATH="$PATH:/Users/allennikka/.local/bin"
+
+# Aliases
+alias suspended="ps aux | head -n2"
+alias ports="lsof -i tcp:5000"
+alias killproc="kill -9"
+alias pshare="pip install ./../python-share" # Test comment
+alias gg="git checkout main && git pull && git checkout -"
+alias src="source ~/.zshrc"
+alias cedit="chezmoi edit"
