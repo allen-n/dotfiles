@@ -38,3 +38,4 @@ alias pshare="pip install ./../python-share" # Test comment
 alias gg="git checkout main && git pull && git checkout -"
 alias src="source ~/.zshrc"
 alias cedit="chezmoi edit"
+alias top="echo 'Using bpytop instead! && bpytop"
